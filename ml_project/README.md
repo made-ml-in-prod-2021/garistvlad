@@ -1,55 +1,90 @@
-ml_project
+Home Assignment #1
 ==============================
 
+**Short project description:**
+
 MADE, ML in production course, HA #1: ML project base structure
+
+**Initial setup:**
+```
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+**Train:**
+```
+# for RamdomForest classifier:
+python train.py configs/train_rf_config.yaml
+
+# for LogisticRegression classifier:
+python train.py configs/train_lr_config.yaml
+```
+
+**Predict:**
+```
+python predict.py configs/predict_config.yaml
+```
+
+**Test:**
+```
+pytest tests/
+```
 
 Project Organization
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
+    ├── .gitignore
     ├── README.md          <- The top-level README for developers using this project.
+    |
+    ├── train.py           <- Main module for training classifier
+    ├── predict.py         <- Main module for making an inferense for classifier just trained
+    |
     ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
+    │   ├── predictions    <- The final predictions, obtained after training and model inference
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+    ├── models             <- Trained and serialized models, model predictions and their metrics
     │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
+    ├── configs            <- Contains .yaml configuration files for model training and inference
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
+    │                         `1.0-username-initial-data-exploration.ipynb`.
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
     │   │
     │   ├── data           <- Scripts to download or generate data
+    │   │   ├── __init__.py
     │   │   └── make_dataset.py
     │   │
     │   ├── features       <- Scripts to turn raw data into features for modeling
+    │   │   ├── __init__.py
     │   │   └── build_features.py
     │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
+    │   ├── models         <- Scripts to train models and then use trained models to make predictions
+    │   │   ├── __init__.py
+    │   │   └── model_fit_preduct.py
+    |   |
+    │   ├── logs          <- Scripts to setup custom loggers
+    │   │   ├── __init__.py
+    │   │   └── logger.py
     │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
+    │   └── params        <- Scripts to create dataclasses with training and prediction parameters
+    │       ├── __init__.py
+    │       ├── download_params.py
+    │       ├── feature_params.py
+    │       ├── predict_pipeline_params.py
+    │       ├── split_params.py
+    │       ├── train_params.py
+    │       └── train_pipeline_params.py
     │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    └── tests              <- Contains module and integration test cases
 
 
 --------
