@@ -1,11 +1,13 @@
 Home Assignment #1
 ==============================
 
-**Short project description:**
+Short project description
+------------
 
 MADE, ML in production course, HA #1: ML project base structure
 
-**Initial setup:**
+Initial setup
+------------
 ```
 python -m venv venv
 source venv/bin/activate
@@ -16,7 +18,8 @@ AWS_ACCESS_KEY_ID = ...
 AWS_SECRET_ACCESS_KEY = ...
 ```
 
-**Train:**
+Train a classifier
+------------
 ```
 # for RamdomForest classifier:
 python train.py configs/train_rf_config.yaml
@@ -25,12 +28,14 @@ python train.py configs/train_rf_config.yaml
 python train.py configs/train_lr_config.yaml
 ```
 
-**Predict:**
+Make a prediction
+------------
 ```
 python predict.py configs/predict_config.yaml
 ```
 
-**Test:**
+Testing
+------------
 ```
 pytest tests/
 ```
