@@ -10,6 +10,10 @@ MADE, ML in production course, HA #1: ML project base structure
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+
+# Add AWS credentials to .env file in root directory
+AWS_ACCESS_KEY_ID = ...
+AWS_SECRET_ACCESS_KEY = ...
 ```
 
 **Train:**
