@@ -1,0 +1,5 @@
+.DS_Store
+.idea
+venv
+tmp_data
+__pycache__
