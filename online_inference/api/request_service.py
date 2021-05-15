@@ -23,8 +23,8 @@ def make_request(count: int, random_data: bool):
     Prints requested data and server response to command line.
 
     Params:
-        count: int - number of requests
-        random_data: book - whether to use randomly generated data
+        count : int - number of requests
+        random_data : bool - whether to use randomly generated data
     """
     if random_data:
         get_data = generate_example_from_synthetic_dataset

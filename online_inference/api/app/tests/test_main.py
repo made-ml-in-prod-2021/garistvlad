@@ -77,7 +77,7 @@ def test_predict_raise_500_error_if_pretrained_not_loaded(mock_check_health, dat
     [
         pytest.param("trestbps", "high", 422, id="WrongDataType"),
         pytest.param("sex", 2, 400, id="NotBinaryFeature"),
-        pytest.param("cp", 4, 400, id="WrongCategory"),
+        pytest.param("cp", 10, 400, id="WrongCategory"),
         pytest.param("age", 200, 400, id="NumericalOutOfRange"),
     ]
 )
