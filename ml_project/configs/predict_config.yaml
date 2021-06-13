@@ -1,0 +1,24 @@
+download_params:
+  s3_bucket: "madeawsbucket"
+  s3_filepath: "datasets/heart.csv"
+  output_folder: "data/raw/"
+input_data_path: "data/raw/heart.csv"
+model_path: "models/model.pkl"
+predictions_path: "data/predictions/result.csv"
+feature_params:
+  binary_features:
+    - "sex"
+    - "fbs"
+    - "exang"
+  categorical_features:
+    - "cp"
+    - "restecg"
+    - "slope"
+    - "ca"
+    - "thal"
+  numerical_features:
+    - "age"
+    - "trestbps"
+    - "chol"
+    - "thalach"
+    - "oldpeak"
