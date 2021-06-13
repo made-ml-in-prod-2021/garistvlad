@@ -22,4 +22,4 @@ def test_make_features(sample_data: pd.DataFrame, feature_params):
 
 def test_extract_target(sample_data: pd.DataFrame, feature_params):
     extracted_target = extract_target(sample_data, feature_params)
-    assert np.allclose(extracted_target, sample_data[feature_params.target_col])
+    assert np.all(np.equal(extracted_target, sample_data[feature_params.target_col]))

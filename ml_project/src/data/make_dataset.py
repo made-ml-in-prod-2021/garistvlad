@@ -48,6 +48,11 @@ def train_val_split(
         params: SplitParams
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Split data on Train and Validation sets according to custom params"""
+    if not 0 < params.val_size < 1:
+        raise ValueError(
+            "Validation size should be strictly greater than 0 "
+            "and strictly less than 1"
+        )
     train_data, val_data = train_test_split(
         data,
         test_size=params.val_size,
