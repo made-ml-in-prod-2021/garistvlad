@@ -1,0 +1,9 @@
+owner: 'airflow'
+depends_on_past: False
+email:
+  - 'garistvlad@yandex.ru'
+email_on_failure: True
+email_on_retry: False
+retries: 1
+# delay in minutes:
+retry_delay: 5
