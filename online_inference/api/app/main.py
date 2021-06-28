@@ -1,4 +1,6 @@
+import datetime
 import os
+import time
 import shutil
 from typing import Optional
 
@@ -25,11 +27,21 @@ BASE_DIR = os.path.abspath(
 PRETRAINED_MODELS_DIR = os.path.join(BASE_DIR, "app", "pretrained_models")
 TMP_DATA_DIR = os.path.join(BASE_DIR, "app", "tmp_data")
 
+START_DELAY = 30
+CRASH_DELAY = 180
+
 logger = setup_logger(name="main:app")
 transformer: Optional[ColumnTransformer] = None
 classifier: Optional[LogisticRegression] = None
 
 app = FastAPI()
+start = datetime.datetime.now()
+
+
+@app.on_event("startup")
+def provide_delayed_start():
+    """Start app after `START_DELAY` seconds"""
+    time.sleep(START_DELAY)
 
 
 @app.on_event("startup")
@@ -88,6 +100,9 @@ async def root():
 @app.get("/health")
 def check_health() -> bool:
     """Check: pretrained classifier and transformer loaded correctly"""
+    if (datetime.datetime.now() - start).seconds > CRASH_DELAY:
+        raise OSError("App crashed as expected")
+
     transformer_is_loaded = (transformer is not None)
     classifier_is_loaded = (classifier is not None)
     pretrained_loaded = (classifier_is_loaded and transformer_is_loaded)

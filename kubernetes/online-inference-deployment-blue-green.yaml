@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: online-inference-blue-green
+  labels:
+    app: online-inference
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      # maximum number of Pods that can be created over the desired number of Pods
+      maxSurge: 100%
+      # maximum number of Pods that can be unavailable during the update process
+      maxUnavailable: 0%
+  selector:
+    matchLabels:
+      app: online-inference
+  template:
+    metadata:
+      labels:
+        app: online-inference
+    spec:
+      containers:
+        - name: heart-classifier-api
+          image: garistvlad/heart-classifier-api:v1
+          command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+            requests:
+              memory: "128Mi"
+              cpu: "200m"
